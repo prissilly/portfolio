@@ -1,0 +1,35 @@
+#Boas-vindas
+print("Bem-vindo ao melhor app de vendas! Só a Priscila's Mall pensa no seu bolso como você!")
+nome = input("Por favor, digite o seu nome: ") #Deverá pedir que o comprador se identifique
+print("Bem-vindo,", nome + "!!!")
+
+# sobre o valor unitário do produto e suas quantidades
+valor_unitario = float(input("Digite o valor da unidade do produto: "))
+quantidade = int(input("Digite a quantidade do mesmo produto: "))
+
+#calcular o valor do produto sem os descontos ofertados pela loja
+valor_total_sem_desconto_da_loja = valor_unitario * quantidade
+
+#verificação do desconto que será aplicado
+if valor_total_sem_desconto_da_loja < 2500:
+  desconto = 0
+elif valor_total_sem_desconto_da_loja <6000:
+  desconto = 4
+elif valor_total_sem_desconto_da_loja <10000:
+  desconto = 7
+else:
+  desconto = 11
+
+#Calculando agora o valor com o desconto oferecido pela loja
+valor_total_com_desconto = valor_total_sem_desconto_da_loja - (valor_total_sem_desconto_da_loja * (desconto / 100))
+
+#Saída dos resultados e valores de vendas
+print("\nValor total sem desconto:", valor_total_sem_desconto_da_loja)
+print("Desconto aplicado:", desconto, "%")
+print("Valor total com o desconto:", valor_total_com_desconto)
+
+#verificando se o desconto foi aplicado ou não
+if valor_total_sem_desconto_da_loja >= 2500 and desconto > 0:
+  print("\nParabéns! Você recebeu um desconto de", desconto, "% na sua compra!")
+
+print("Esperamos vê-lo novamente em breve no Priscila's Mall!!!")
