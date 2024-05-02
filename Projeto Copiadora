@@ -1,0 +1,77 @@
+# Boas-vindas
+print("Bem-vindo a Copiadora da Pri.")
+nome = input("Por favor, digite o seu nome: ")
+print("Bem-vindo,", nome + '!')
+
+# Menu de serviços ofertados e preços
+def escolha_servico():
+    while True:
+        servico = input("Digite o serviço desejado (DIG para Digitalização, ICO para Impressão Colorida, IPB para Impressão Preto e Branco, FOT para Fotocópia): ").upper()
+        if servico in ['DIG', 'ICO', 'IPB', 'FOT']:
+            return servico
+        else:
+            print("Opção Inexistente. Por favor, tente novamente.")
+
+# Desconto por quantidade de páginas
+def num_paginas():
+    while True:
+        try:
+            num_pagina = int(input("Digite a quantidade de páginas: "))
+            if num_pagina < 20:
+                return num_pagina, 0  # Retorna o número de páginas e desconto 0%
+            elif num_pagina < 200:
+                return num_pagina, 0.15  # Retorna o número de páginas e desconto 15%
+            elif num_pagina < 2000:
+                return num_pagina, 0.20  # Retorna o número de páginas e desconto 20%
+            elif num_pagina < 20000:
+                return num_pagina, 0.25  # Retorna o número de páginas e desconto 25%
+            else:
+                print("Número de páginas inválido. Serviço indisponível. Tente outra quantidade.")
+        except ValueError:
+            print("Valor inválido. Por favor, insira um número válido.")
+
+# Serviços adicionais
+def servico_extra():
+    while True:
+        adicional = input("Escolha o serviço adicional desejado (1 para encadernação simples, 2 para encadernação com capa dura, 0 para nenhum serviço adicional): ")
+        if adicional in ['1', '2', '0']:
+            return int(adicional)
+        else:
+            print("Opção Inválida. Por favor, tente novamente.")
+
+# Menu principal
+servico = escolha_servico()
+num_pagina, desconto = num_paginas()
+adicional = servico_extra()
+
+# Calcula o valor do serviço sem desconto
+if servico == 'DIG':
+    valor_servico = num_pagina * 1.10
+elif servico == 'ICO':
+    valor_servico = num_pagina * 1.00
+elif servico == 'IPB':
+    valor_servico = num_pagina * 0.40
+elif servico == 'FOT':
+    valor_servico = num_pagina * 0.20
+
+# Aplica desconto
+valor_com_desconto = valor_servico * (1 - desconto)
+
+# Calcula o valor do serviço adicional
+if adicional == 1:
+    valor_extra = 15
+elif adicional == 2:
+    valor_extra = 40
+else:
+    valor_extra = 0
+
+# Calcula o valor total
+valor_total = valor_com_desconto + valor_extra
+
+# Saída para valor final
+print("Valor do serviço:", valor_servico)
+print("Desconto aplicado:", desconto * 100, "%")
+print("Valor do serviço com desconto:", valor_com_desconto)
+print("Valor do serviço adicional:", valor_extra)
+print("Total a pagar: R$", valor_total)
+(print("Volte Sempre!"))
