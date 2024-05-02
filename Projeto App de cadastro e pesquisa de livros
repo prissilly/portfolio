@@ -1,0 +1,82 @@
+#Boas-vindas
+print("Bem-vindo ao PriBooks! Seu melhor Software de Gerenciamento de Livros!")
+nome = input("Por favor, digite o seu nome: ")
+print("Bem-vindo,", nome + '!')
+
+#variáveis
+lista_livro = []
+id_global = 0
+
+#cadastramento
+def cadastrar_livro(id):
+    global id_global
+    id_global += 1
+    nome = input("Digite o nome do livro: ")
+    autor = input("Digite o autor do livro: ")
+    editora = input("Digite a editora do livro: ")
+    livro = {'id': id, 'nome': nome, 'autor': autor, 'editora': editora}
+    lista_livro.append(livro)
+
+#consulta
+def consultar_livro():
+    while True:
+        print("Menu de Consulta:")
+        print("1. Consultar Todos")
+        print("2. Consultar por Id")
+        print("3. Consultar por Autor")
+        print("4. Retornar ao menu")
+        opcao = input("Escolha uma opção: ")
+
+        if opcao == '1':
+            for livro in lista_livro:
+                print(livro)
+        elif opcao == '2':
+            id_consulta = int(input("Digite o id do livro: "))
+            for livro in lista_livro:
+                if livro['id'] == id_consulta:
+                    print(livro)
+                    break
+            else:
+                print("Livro não encontrado. Por favor, tente novamente.")
+        elif opcao == '3':
+            autor_consulta = input("Digite o nome do autor: ")
+            for livro in lista_livro:
+                if livro['autor'].lower() == autor_consulta.lower():
+                    print(livro)
+        elif opcao == '4':
+            break
+        else:
+            print("Opção inválida.")
+
+#remoção de livros
+def remover_livro():
+    id_remover = int(input("Digite o id do livro a ser removido: "))
+    for livro in lista_livro:
+        if livro['id'] == id_remover:
+            lista_livro.remove(livro)
+            print("Livro removido com sucesso.")
+            break
+    else:
+        print("Id inválido.")
+
+#menu
+
+while True:
+    print("\nMenu Principal:")
+    print("1. Cadastrar Livro")
+    print("2. Consultar Livro")
+    print("3. Remover Livro")
+    print("4. Encerrar Programa")
+    opcao_principal = input("Escolha uma opção: ")
+
+    if opcao_principal == '1':
+        cadastrar_livro(id_global)
+    elif opcao_principal == '2':
+        consultar_livro()
+    elif opcao_principal == '3':
+        remover_livro()
+    elif opcao_principal == '4':
+        print("Encerrando o programa. Obrigado!")
+        break
+    else:
+        print("Opção inválida.")
